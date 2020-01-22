@@ -1,3 +1,3 @@
-rootProject.name = "manager.commons"
+rootProject.name = "manager-commons"
 
-include("json")
+include("error", "json", "model", "security", "buildSrc")

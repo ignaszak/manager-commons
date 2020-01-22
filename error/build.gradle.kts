@@ -5,12 +5,10 @@ plugins {
 }
 
 dependencies {
-    compile(project(":model"))
-
-    implementation("com.google.code.gson:gson:${Versions.GSON}")
-    implementation("io.jsonwebtoken:jjwt-api:${Versions.JJWT}")
-    implementation("io.jsonwebtoken:jjwt-impl:${Versions.JJWT}")
-    implementation("io.jsonwebtoken:jjwt-jackson:${Versions.JJWT}")
+    implementation("org.springframework:spring-web:${Versions.SPRING_WEB}") {
+        exclude(group = "org.springframework", module = "spring-core")
+        exclude(group = "org.springframework", module = "spring-beans")
+    }
 }
 
 publishing {
@@ -22,7 +20,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "net.ignaszak"
-            artifactId = "manager-commons-json"
+            artifactId = "manager-commons-error"
             version = "master-SNAPSHOT"
             from(components["java"])
         }
@@ -30,7 +28,7 @@ publishing {
 }
 
 tasks.jar {
-    into("META-INF/maven/net/ignaszak/manager/commons/json") {
+    into("META-INF/maven/net/ignaszak/manager/commons/error") {
         from("build/publications/maven/pom-default.xml")
         rename(".*", "pom.xml")
     }

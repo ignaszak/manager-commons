@@ -1,17 +1,8 @@
-import Conf.Versions
-
 plugins {
     `maven-publish`
 }
 
-dependencies {
-    compile(project(":model"))
-
-    implementation("com.google.code.gson:gson:${Versions.GSON}")
-    implementation("io.jsonwebtoken:jjwt-api:${Versions.JJWT}")
-    implementation("io.jsonwebtoken:jjwt-impl:${Versions.JJWT}")
-    implementation("io.jsonwebtoken:jjwt-jackson:${Versions.JJWT}")
-}
+dependencies {}
 
 publishing {
     repositories {
@@ -22,7 +13,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "net.ignaszak"
-            artifactId = "manager-commons-json"
+            artifactId = "manager-commons-model"
             version = "master-SNAPSHOT"
             from(components["java"])
         }
@@ -30,7 +21,7 @@ publishing {
 }
 
 tasks.jar {
-    into("META-INF/maven/net/ignaszak/manager/commons/json") {
+    into("META-INF/maven/net/ignaszak/manager/commons/model") {
         from("build/publications/maven/pom-default.xml")
         rename(".*", "pom.xml")
     }
